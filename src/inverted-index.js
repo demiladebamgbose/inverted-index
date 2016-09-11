@@ -112,6 +112,30 @@ function Index() {
       }
     }
   };
+
+  /**
+  * @method getIndex
+  *
+  * Returns the index object for a file or term.
+  *
+  * @param Optional {String} filepath
+  * @param Optional {String} term
+  * @return {Object / Array} indexObj
+  */
+  this.getIndex = function(filepath, term) {
+    var key;
+
+    if(!term && !filepath) {
+      return _this.indexObject;
+    }
+    // Get file name from a given filepath.
+    key = _this.helperMethods.getFilename(filepath);
+    if(!term) {
+      return _this.indexObject[key];
+    }
+
+    return _this.indexObject[key][term] || [];
+  };
 }
 
 module.exports = Index;
