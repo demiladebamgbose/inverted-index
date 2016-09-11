@@ -10,7 +10,7 @@ describe('Inverted Index', function() {
       fileContent = res;
     });
 
-    it('ensures each object in JSON array contains a property whose value is a string', function(done) {
+    it('Ensures each object in JSON array contains a property whose value is a string', function(done) {
       setTimeout(function() {
         function checkString(anObject) {
           var keys = Object.keys(anObject);
@@ -43,7 +43,7 @@ describe('Inverted Index', function() {
   });
 
   describe('Populate index', function() {
-    it('create index object once file is read', function(done) {
+    it('Create index object once file is read', function(done) {
       setTimeout (function() {
         expect(index.indexObject).not.toBe({});
         // tests if an index object is created for both JSON files
@@ -53,14 +53,14 @@ describe('Inverted Index', function() {
       }, 200);
     });
 
-    it('does not overwrite previous index', function(done) {
+    it('Does not overwrite previous index', function(done) {
       setTimeout(function() {
         expect((Object.keys(index.indexObject)).length).toEqual(2);
         done();
       },200);
     });
 
-    it('maps string to correct object in JSON array', function(done) {
+    it('Maps string to correct object in JSON array', function(done) {
       setTimeout (function() {
         // index.getIndex takes optional arguments filepath and term
         expect(index.getIndex('./jasmine/books.json', 'of')).toEqual([0,1]);
@@ -75,7 +75,7 @@ describe('Inverted Index', function() {
   });
 
   describe('Search Index', function() {
-    it('returns an array of the indices for the words in the search query', function(done) {
+    it('Returns an array of the indices for the words in the search query', function(done) {
       setTimeout (function() {
         var startTime = new Date();
         // index.searchIndex take file path as an optional parameter
