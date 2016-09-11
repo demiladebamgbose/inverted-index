@@ -136,6 +136,19 @@ function Index() {
 
     return _this.indexObject[key][term] || [];
   };
+
+  /**
+  * @method locateTerm
+  *
+  * Finds a term in the index object.
+  *
+  * @param {String} term
+  * @return {Array} indexObj[_this.key][terms]
+  */
+  this.locateTerm = function(terms) {
+    return _this.indexObject[_this.key][terms] || [];
+  };
+  
 }
 
 module.exports = Index;
