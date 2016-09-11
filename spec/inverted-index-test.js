@@ -33,4 +33,44 @@ describe('Inverted Index', function() {
       }, 200);
     });
   });
+
+  beforeAll(function(done) {
+    index.createIndex('./jasmine/test.json');
+    setTimeout(function() {
+      index.createIndex('./jasmine/books.json');
+      done();
+    },200);
+  });
+
+  describe('Populate index', function() {
+    it('create index object once file is read', function(done) {
+      setTimeout (function() {
+        expect(index.indexObject).not.toBe({});
+        // tests if an index object is created for both JSON files
+        expect(index.indexObject['books.json']).not.toBe({});
+        expect(index.indexObject['test.json']).not.toBe({});
+        done();
+      }, 200);
+    });
+
+    it('does not overwrite previous index', function(done) {
+      setTimeout(function() {
+        expect((Object.keys(index.indexObject)).length).toEqual(2);
+        done();
+      },200);
+    });
+
+    it('maps string to correct object in JSON array', function(done) {
+      setTimeout (function() {
+        // index.getIndex takes optional arguments filepath and term
+        expect(index.getIndex('./jasmine/books.json', 'of')).toEqual([0,1]);
+        expect(index.getIndex('./jasmine/test.json', 'powerful')).toEqual([1]);
+        // index.getIndex returns full index object for a given filepath
+        expect(index.getIndex('./jasmine/books.json')).toEqual(index.indexObject['books.json']);
+        // index.getIndex returns index object for all previously created files
+        expect(index.getIndex()).toEqual(index.indexObject);
+        done();
+      }, 200);
+    });
+  });
 });
