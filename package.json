@@ -1,0 +1,27 @@
+{
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "Creates an inverted index object for a JSON document ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node jasmine-runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demiladebamgbose/inverted-index.git"
+  },
+  "author": "demilade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demiladebamgbose/inverted-index/issues"
+  },
+  "homepage": "https://github.com/demiladebamgbose/inverted-index#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "jasmine": "^2.5.1",
+    "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "jasmine-spec-reporter": "^2.7.0"
+  }
+}
