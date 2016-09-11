@@ -148,7 +148,29 @@ function Index() {
   this.locateTerm = function(terms) {
     return _this.indexObject[_this.key][terms] || [];
   };
-  
+
+  /**
+  * @method searchArray
+  *
+  * Searches index objects for an array of terms.
+  *
+  * @param {Array} terms
+  * @param Optional {String} filepath
+  * @return {Array} searchResult
+  */
+  this.searchArray = function(arrayOfterms, filepath) {
+    var searchResult = [];
+
+    if(!filepath) {
+      searchResult = arrayOfterms.map(_this.locateTerm);
+    } else {
+      for(var currIndex = 0; currIndex < arrayOfterms.length; currIndex++) {
+        searchResult.push(_this.getIndex(filepath, arrayOfterms[currIndex]));
+      }
+    }
+      return searchResult;
+  };
+
 }
 
 module.exports = Index;
