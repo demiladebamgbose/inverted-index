@@ -170,7 +170,31 @@ function Index() {
     }
       return searchResult;
   };
+  /**
+  * @method searchIndex
+  *
+  * Searches index objects for terms contained in strings, arrays or nested arrays.
+  *
+  * @param {String / Array} terms
+  * @param Optional {String} filepath
+  * @return {Array} result
+  */
+  this.searchIndex = function(terms, filepath) {
+    var result;
 
+    if(Array.isArray(terms)) {
+      // Takes care of nested arrays.
+      terms = _.flattenDeep(terms);
+      // Remove punctuations and change terms to lower case.
+      terms = terms.map(_this.helperMethods.normalize);
+      result = _this.searchArray(terms, filepath);
+    } else {
+      terms = terms.split(' ');
+      result = _this.searchIndex(terms, filepath);
+    }
+
+    return result;
+  };
 }
 
 module.exports = Index;
