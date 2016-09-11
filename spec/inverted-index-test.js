@@ -73,4 +73,23 @@ describe('Inverted Index', function() {
       }, 200);
     });
   });
+
+  describe('Search Index', function() {
+    it('returns an array of the indices for the words in the search query', function(done) {
+      setTimeout (function() {
+        var startTime = new Date();
+        // index.searchIndex take file path as an optional parameter
+        expect(index.searchIndex('alliance of man and dwarf', './jasmine/books.json')).toEqual([[1], [0,1], [1], [0,1], [1]]);
+        expect(index.searchIndex(['alliance','alice', 'old'])).toEqual([[1], [0], []]);
+        // test index.searchIndex with complicated string
+        expect(index.searchIndex('alliance, alice... LOVE!', './jasmine/test.json')).toEqual([[1], [0], [1]]);
+        // test index.searchIndex with nested arrays
+        expect(index.searchIndex([['alliance',['alice']], 'a'])).toEqual([[1], [0], [0,1]]);
+        var endTime = new Date();
+        // ensures search does not take too long to execute
+        expect(endTime.getMilliseconds() - startTime.getMilliseconds()).toBeLessThan(5);
+        done();
+      }, 200);
+    });
+  });
 });
