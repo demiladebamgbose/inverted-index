@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var _ = require("lodash");
 
 /**
 *@class Helper
@@ -6,7 +6,7 @@ var _ = require('lodash');
 * Creates helper methods for Index object.
 */
 function Helper() {
-  'use strict';
+  "use strict";
 
   /**
   * @method normalize
@@ -17,7 +17,7 @@ function Helper() {
   * @return {String} returns string
   */
   this.normalize = function(string) {
-    return string.replace(/[^a-zA-z\s]/g, '').toLowerCase();
+    return string.replace(/[^a-zA-z\s]/g, "").toLowerCase();
   };
 
   /**
@@ -70,7 +70,7 @@ function Helper() {
   this.getFilename = function(filepath) {
     var filename;
 
-    filepath = filepath.split('/');
+    filepath = filepath.split("/");
     filename = _.last(filepath);
 
     return filename;
