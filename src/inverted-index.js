@@ -1,6 +1,6 @@
-var Helper = require('./inverted-helper.js');
-var fs = require('fs');
-var _ = require('lodash');
+var Helper = require("./inverted-helper.js");
+var fs = require("fs");
+var _ = require("lodash");
 
 /**
 * @class Index
@@ -10,10 +10,10 @@ var _ = require('lodash');
 * list of the documents in which they can be found within the file.
 */
 function Index() {
-  'use strict';
+  "use strict";
   var _this = this;
 
-  this.key = '';
+  this.key = "";
   this.indexObject = {};
   this.helperMethods = new Helper();
 
@@ -35,7 +35,7 @@ function Index() {
         _this.transformObjects(res);
       });
     } else {
-      throw new Error('Cannot createIndex of ' + filepath);
+      throw new Error("Cannot createIndex of " + filepath);
     }
   };
 
@@ -51,7 +51,7 @@ function Index() {
   this.readJsonFile = function(filepath, callback) {
     var object;
 
-    fs.readFile(filepath, 'utf8', function(err, data) {
+    fs.readFile(filepath, "utf8", function(err, data) {
       try{
         object = JSON.parse(data);
       }
@@ -59,7 +59,7 @@ function Index() {
         throw new Error("Expected an array of JSON objects");
       }
       if(!_this.helperMethods.isValidArray(object)) {
-        throw new Error('JSON file cannot be empty');
+        throw new Error("JSON file cannot be empty");
       }
       callback(object);
     });
@@ -82,8 +82,8 @@ function Index() {
     for(var objectIndex = 0; objectIndex < arraylength; objectIndex++) {
       // Removes punctuations and chages both title and text to lower case.
       // Splits title and text to array.
-      title = _this.helperMethods.normalize(arrayOfObj[objectIndex].title).split(' ');
-      text = _this.helperMethods.normalize(arrayOfObj[objectIndex].text).split(' ');
+      title = _this.helperMethods.normalize(arrayOfObj[objectIndex].title).split(" ");
+      text = _this.helperMethods.normalize(arrayOfObj[objectIndex].text).split(" ");
       // Creates an array of tokens and removes multiple occurrence of words.
       uniqueArray.push(_this.helperMethods.uniqueFilter(title,text));
     }
@@ -189,7 +189,7 @@ function Index() {
       terms = terms.map(_this.helperMethods.normalize);
       result = _this.searchArray(terms, filepath);
     } else {
-      terms = terms.split(' ');
+      terms = terms.split(" ");
       result = _this.searchIndex(terms, filepath);
     }
 
