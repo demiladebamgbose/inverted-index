@@ -67,6 +67,8 @@ describe("Inverted Index", function() {
         expect(index.getIndex("./jasmine/test.json", "powerful")).toEqual([1]);
         // index.getIndex returns full index object for a given filepath
         expect(index.getIndex("./jasmine/books.json")).toEqual(index.indexObject["books.json"]);
+        // index.getIndex returns an array containing an empty object for a non-existent file 
+        expect(index.getIndex("./jasmine/empty.json")).toEqual([{}]);
         // index.getIndex returns index object for all previously created files
         expect(index.getIndex()).toEqual(index.indexObject);
         done();
