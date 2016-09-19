@@ -131,7 +131,7 @@ function Index() {
     // Get file name from a given filepath.
     key = _this.helperMethods.getFilename(filepath);
     if(!term) {
-      return _this.indexObject[key] || [{}];
+      return _this.indexObject[key] || {};
     }
 
     return _this.indexObject[key][term] || [];
